@@ -1,0 +1,287 @@
+{
+  "auth": {
+    "attendancefluttercee7b174": {
+      "customAuth": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174DefineAuthChallenge",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174CreateAuthChallenge",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174VerifyAuthChallengeResponse",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174PostConfirmation",
+          "triggerProvider": "Cognito"
+        }
+      ],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL",
+          "NAME",
+          "PHONE_NUMBER"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    },
+    "userPoolGroups": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "attendancefluttercee7b174"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito-UserPool-Groups"
+    }
+  },
+  "function": {
+    "attendanceflutter3c6a0422PostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "attendancefluttercee7b174CreateAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "attendancefluttercee7b174DefineAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "attendancefluttercee7b174PostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "attendancefluttercee7b174VerifyAuthChallengeResponse": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "attendancefluttere2553b23e2553b23PostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_attendanceflutter3c6a0422PostConfirmation_GROUP": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendanceflutter3c6a0422PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendanceflutter3c6a0422PostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendanceflutter3c6a0422PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendanceflutter3c6a0422PostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendanceflutter3c6a0422PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttercee7b174CreateAuthChallenge_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174CreateAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttercee7b174CreateAuthChallenge_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174CreateAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttercee7b174DefineAuthChallenge_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174DefineAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttercee7b174DefineAuthChallenge_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174DefineAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttercee7b174PostConfirmation_GROUP": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttercee7b174PostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttercee7b174PostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttercee7b174VerifyAuthChallengeResponse_RECAPTCHASECRET": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174VerifyAuthChallengeResponse"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttercee7b174VerifyAuthChallengeResponse_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174VerifyAuthChallengeResponse"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttercee7b174VerifyAuthChallengeResponse_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttercee7b174VerifyAuthChallengeResponse"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttere2553b23e2553b23PostConfirmation_GROUP": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttere2553b23e2553b23PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttere2553b23e2553b23PostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttere2553b23e2553b23PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_attendancefluttere2553b23e2553b23PostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "attendancefluttere2553b23e2553b23PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_storage_attendanceflutter9ca50a35_bucketName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "attendanceflutter9ca50a35"
+        }
+      ]
+    },
+    "AMPLIFY_storage_attendanceflutter9ca50a35_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "attendanceflutter9ca50a35"
+        }
+      ]
+    },
+    "AMPLIFY_storage_attendanceflutterf7e09002_bucketName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "attendanceflutterf7e09002"
+        }
+      ]
+    },
+    "AMPLIFY_storage_attendanceflutterf7e09002_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "attendanceflutterf7e09002"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "attendanceflutterf7e09002": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3",
+      "serviceType": "imported"
+    }
+  }
+}

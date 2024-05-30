@@ -1,0 +1,62 @@
+{
+  "latestenv": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-attendanceflutter-latestenv-d2427-authRole",
+      "UnauthRoleArn": "arn:aws:iam::058264411122:role/amplify-attendanceflutter-latestenv-d2427-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::058264411122:role/amplify-attendanceflutter-latestenv-d2427-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-attendanceflutter-latestenv-d2427-deployment",
+      "UnauthRoleName": "amplify-attendanceflutter-latestenv-d2427-unauthRole",
+      "StackName": "amplify-attendanceflutter-latestenv-d2427",
+      "StackId": "arn:aws:cloudformation:ap-south-1:058264411122:stack/amplify-attendanceflutter-latestenv-d2427/cca9b6e0-1113-11ef-870e-0a7fb18cc3cb",
+      "AmplifyAppId": "d19610nptvhq1m",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-attendanceflutter-latestenv-d2427-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "function": {
+        "attendancefluttere2553b23e2553b23PostConfirmation": {
+          "GROUP": "studentauth",
+          "deploymentBucketName": "amplify-attendanceflutter-latestenv-d2427-deployment",
+          "s3Key": "amplify-builds/attendancefluttere2553b23e2553b23PostConfirmation-55425a6d6c2b45332f44-build.zip"
+        },
+        "attendanceflutter3c6a0422PostConfirmation": {
+          "GROUP": "studentauth",
+          "deploymentBucketName": "amplify-attendanceflutter-latestenv-d2427-deployment",
+          "s3Key": "amplify-builds/attendanceflutter3c6a0422PostConfirmation-4745455852717637684a-build.zip"
+        },
+        "attendancefluttercee7b174DefineAuthChallenge": {
+          "deploymentBucketName": "amplify-attendanceflutter-latestenv-d2427-deployment",
+          "s3Key": "amplify-builds/attendancefluttercee7b174DefineAuthChallenge-733571612f64362f7136-build.zip"
+        },
+        "attendancefluttercee7b174CreateAuthChallenge": {
+          "deploymentBucketName": "amplify-attendanceflutter-latestenv-d2427-deployment",
+          "s3Key": "amplify-builds/attendancefluttercee7b174CreateAuthChallenge-38445731434550317449-build.zip"
+        },
+        "attendancefluttercee7b174VerifyAuthChallengeResponse": {
+          "RECAPTCHASECRET": "6LfDe9wpAAAAABL8xmSTdxoW2-1MY-tUeopBjCzr",
+          "deploymentBucketName": "amplify-attendanceflutter-latestenv-d2427-deployment",
+          "s3Key": "amplify-builds/attendancefluttercee7b174VerifyAuthChallengeResponse-6c6d715363593971682b-build.zip"
+        },
+        "attendancefluttercee7b174PostConfirmation": {
+          "GROUP": "attendance-flutter",
+          "deploymentBucketName": "amplify-attendanceflutter-latestenv-d2427-deployment",
+          "s3Key": "amplify-builds/attendancefluttercee7b174PostConfirmation-6b434b66726e59337a49-build.zip"
+        }
+      },
+      "storage": {
+        "attendanceflutter9ca50a35": {
+          "bucketName": "attendance-mark2",
+          "region": "ap-south-1"
+        },
+        "attendanceflutterf7e09002": {
+          "bucketName": "attendance-mark2",
+          "region": "ap-south-1"
+        }
+      },
+      "auth": {
+        "attendancefluttercee7b174": {},
+        "userPoolGroups": {}
+      }
+    }
+  }
+}

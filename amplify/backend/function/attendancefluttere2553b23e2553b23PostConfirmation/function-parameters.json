@@ -1,0 +1,16 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group"
+  ],
+  "parentResource": "attendancefluttere2553b23e2553b23",
+  "functionName": "attendancefluttere2553b23e2553b23PostConfirmation",
+  "resourceName": "attendancefluttere2553b23e2553b23PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "C:\\snapshot\\amplify-cli\\build\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "attendancefluttere2553b23e2553b23PostConfirmation",
+  "skipEdit": true
+}
