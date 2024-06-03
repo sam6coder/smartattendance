@@ -49,9 +49,9 @@ class SignStudentScreenState extends State<SignStudentScreen> {
     username = extractUsernameFromEmail(emailS);
     print('Username: $username');
 
-    if (emailS == "" || password == "" || name == "" || univRoll=="" || phone=="" ) {
+    if (emailS == "" || password == "" || name == "" || univRoll=="" || phone=="" || phone.length!=10) {
       Fluttertoast.showToast(
-          msg: 'Please fill all the fields',
+          msg: 'Please fill all the valid fields',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Color(0xFFF3E5F5),
@@ -61,12 +61,12 @@ class SignStudentScreenState extends State<SignStudentScreen> {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: emailS, password: password);
-        Map<String, dynamic> newUserData = {"password": "$password","Mobile":"$phone","Univ_rollNo":"$univRoll"};
+        Map<String, dynamic> newUserData = {"Password": "$password","Mobile":"$phone","Univ_rollNo":"$univRoll"};
         FirebaseDatabase database = FirebaseDatabase.instance;
         DatabaseReference ref = database.ref("students/$username ipec");
         await ref.update({
           "Password": password,
-          "Mobile":"$phone","Univ_rollNo":"$univRoll"
+          "Mobile":phone,"Univ_rollNo":univRoll
 
         });
 
@@ -75,8 +75,8 @@ class SignStudentScreenState extends State<SignStudentScreen> {
             .doc("$username ipec")
             .update(newUserData);
         if (userCredential.user != null) {
-          Navigator.pop(context);
-        }
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => LoginStudentScreen()));        }
         log("User created");
       } on FirebaseAuthException catch (ex) {
         if (ex.code == "weak-password") {
@@ -222,9 +222,9 @@ class SignStudentScreenState extends State<SignStudentScreen> {
                             icon: Icon(Icons.contact_page_rounded),
                           ),
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
+                            if (value == null || value.isEmpty || value.length!=10) {
                               nameFocusNode.requestFocus();
-                              return 'Please enter your phone number';
+                              return 'Please enter a valid phone number';
                             }
                           },
                         ),

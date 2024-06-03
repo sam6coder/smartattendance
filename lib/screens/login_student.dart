@@ -62,7 +62,6 @@ class LoginStudentScreenState extends State<LoginStudentScreen> {
           await prefs.setString('logged in', 'login_student');
 
 
-
           Fluttertoast.showToast(
               msg: 'Logged in successfully',
               toastLength: Toast.LENGTH_SHORT,

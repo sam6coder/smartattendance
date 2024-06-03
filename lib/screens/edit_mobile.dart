@@ -6,8 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get.dart';
 import 'dart:developer';
+import 'package:firebase_database/firebase_database.dart';
 
 class EditMobileScreen extends StatefulWidget {
   @override
@@ -17,40 +17,54 @@ class EditMobileScreen extends StatefulWidget {
 class EditMobileScreenState extends State<EditMobileScreen> {
   TextEditingController mobileController = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  bool isLoading=false;
+  bool isLoading = false;
   late User user;
   String mobile = "";
-  bool bioValid=true;
-  bool displayNumberValid=true;
-  final nameFocusNode = FocusNode();
-  TextEditingController nameController=TextEditingController();
+  bool bioValid = true;
+  bool displayNumberValid = true;
+  final numberFocusNode = FocusNode();
 
-  void editName() async {
+
+
+  void editNumber() async {
     mobile = mobileController.text.trim();
 
-    if (mobile== "" || mobile.length<10) {
-      displayNumberValid=true;
+    if (mobile == "" || mobile.length != 10) {
+      //displayNumberValid = true;
 
       Fluttertoast.showToast(
-        msg: 'Please enter a valid number',
-        toastLength: Toast.LENGTH_SHORT,
+          msg: 'Please enter a valid number',
+          toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Color(0xFFF3E5F5),
-          textColor: Colors.black
-      );
+          textColor: Colors.black);
     } else {
       try {
-        await FirebaseFirestore.instance.collection('students').doc(
-            "$username ipec").update({"Mobile_number": "$mobileController"});
+        Map<String, dynamic> newUserData = {"Mobile": mobile};
+        FirebaseDatabase database = FirebaseDatabase.instance;
+        DatabaseReference ref = database.ref("students/$username ipec");
+        await ref.update({"Mobile": mobile});
+
+        await FirebaseFirestore.instance
+            .collection("students")
+            .doc("$username ipec")
+            .update(newUserData);
+        Fluttertoast.showToast(
+            msg: 'Mobile Number Changed',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Color(0xFFF3E5F5),
+            textColor: Colors.black);
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => ProfileStudentScreen()));
       } on FirebaseAuthException catch (ex) {
-        if (ex.code == "weak-password") {
+        if (ex.code == "failed") {
           //snackbar
         }
         log(ex.code.toString());
       }
     }
   }
-
 
   loadUserInfo() async {
     mobileVd.value = await FirebaseFirestore.instance
@@ -60,30 +74,20 @@ class EditMobileScreenState extends State<EditMobileScreen> {
         .then((value) {
       return value.get('Mobile_number');
     });
-
   }
-  // updateProfileData() async {
-  //   name = nameController.text.trim();
-  //
-  //   setState(() {
-  //     nameController.text.trim().length<3 || nameController.text.isEmpty?displayNameValid=false:displayNameValid=true;
-  //
-  //   });
-  //   if(displayNameValid){
-  //     await FirebaseFirestore.instance.collection('students').doc(
-  //         "$username ipec").update({"Name": "$nameController"});
-  //     SnackBar snackbar=SnackBar(content: Text("Profile updated"));
-  //     scaffoldKey.currentState.showSnackBar(new SnackBar(content: Text("Profile updated")));
-  //   }
-  // }
+
+  @override
+  void dispose() {
+    super.dispose();
+    mobileController.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
-    editName();
+
     loadUserInfo();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -98,8 +102,7 @@ class EditMobileScreenState extends State<EditMobileScreen> {
             MaterialPageRoute(builder: (context) => ProfileStudentScreen()));
       },
       child: Scaffold(
-          key:scaffoldKey,
-
+          key: scaffoldKey,
           backgroundColor: Color.fromRGBO(31, 116, 206, 2),
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(18, 22, 108, 2),
@@ -113,66 +116,73 @@ class EditMobileScreenState extends State<EditMobileScreen> {
             padding: const EdgeInsets.all(20.0),
             child: Container(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
-                  child: Column(children: [
-                    Text(
-                      'MOBILE NUMBER',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 30),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('MOBILE NUMBER',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 13,
-                              )),
-                          SizedBox(height: 5),
-                          ConstrainedBox(
-                            constraints: BoxConstraints.tight(const Size(365, 43)),
-                            child: Obx(()=>TextFormField(
-                              initialValue: "$mobile.value",
-                              focusNode: nameFocusNode,
-                              keyboardType: TextInputType.text,
-                              controller: nameController,
-                              decoration: InputDecoration(
-                                //errorText: displayNameValid?null:"Mobile number should be 10 digits",
-                                hintStyle: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                                fillColor: Color(0xFFccb9f7),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white),
-                                ),
-                                hintText: '$mobile.value',
-                              ),
-                            ),
-                            ),),
-                          TextButton(
-                            style: ButtonStyle(
-                              fixedSize: MaterialStateProperty.all(Size(330,50)),
-                              backgroundColor: MaterialStatePropertyAll<Color>(Color(0xFF651FFF),),),
-                            onPressed: (){
-                              editName();
-                            }, child: Text('Save Mobile',style:TextStyle(color:Colors.white,fontSize: 17,fontWeight: FontWeight.bold)),),
-                        ],
+              padding: const EdgeInsets.only(top: 30.0),
+              child: Column(children: [
+                Text(
+                  'MOBILE NUMBER',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 30),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('MOBILE NUMBER',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                          )),
+                      SizedBox(height: 5),
+                      ConstrainedBox(
+                        constraints: BoxConstraints.tight(const Size(365, 50)),
+                        child: TextFormField(
+                          focusNode: numberFocusNode,
+                          keyboardType: TextInputType.number,
+                          controller: mobileController,
+                          decoration: InputDecoration(
+                            fillColor: Color(0xFFccb9f7),
+                            hintText: 'Enter your new Number',
+                            icon: Icon(Icons.contact_page_rounded),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty || value.length!=10) {
+                              numberFocusNode.requestFocus();
+                              return 'Please enter a valid phone number';
+                            }
+                          },
+                        ),
                       ),
-                    ),
-                  ]),
-                )),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: TextButton(
+                          style: ButtonStyle(
+                            fixedSize: MaterialStateProperty.all(Size(330, 50)),
+                            backgroundColor: MaterialStatePropertyAll<Color>(
+                              Color(0xFF651FFF),
+                            ),
+                          ),
+                          onPressed: () {
+                            editNumber();
+                          },
+                          child: Text('Save Mobile',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+            )),
           )),
     );
   }
 }
-
-

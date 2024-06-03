@@ -21,6 +21,7 @@ class ViewAttendanceStudentScreenState
     extends State<ViewAttendanceStudentScreen> {
   late Future<List<AttendanceRecord>> attendanceList;
   String field = '';
+  int rollNO=0;
 
   loadUserInfo() async {
     field = '$username ipec';
@@ -32,7 +33,8 @@ class ViewAttendanceStudentScreenState
 
       final vals = dataSnapshot.value as Map<dynamic, dynamic>;
       setState(() {
-        rollNo = vals['Univ_rollno'];
+        rollNo = vals['Univ_rollNo'];
+        rollNO=int.parse(rollNo);
       });
     });
   }
@@ -48,6 +50,7 @@ class ViewAttendanceStudentScreenState
 
   @override
   Widget build(BuildContext context) {
+
     return PopScope(
         canPop: false,
         onPopInvoked: (didPop) async {
@@ -82,7 +85,7 @@ class ViewAttendanceStudentScreenState
                 } else if (snapshot.hasData) {
                   print(rollNo);
                   List<AttendanceRecord> records = snapshot.data!
-                      .where((record) => record.uniRollNumber == rollNo)
+                      .where((record) => record.uniRollNumber == rollNO)
                       .toList();
 
                   if (records.length == 1) {

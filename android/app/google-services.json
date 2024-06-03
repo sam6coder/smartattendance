@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "259574256916",
+    "firebase_url": "https://attendance-system-a10eb-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "attendance-system-a10eb",
+    "storage_bucket": "attendance-system-a10eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259574256916:android:9b3a920901529ff7c5de01",
+        "android_client_info": {
+          "package_name": "com.example.smart_attendance_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4u08WmvqXmUUFxqf6Vc-okGEtYgFnX-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259574256916:android:eb9d593761ce0f31c5de01",
+        "android_client_info": {
+          "package_name": "com.example.smartattendance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4u08WmvqXmUUFxqf6Vc-okGEtYgFnX-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259574256916:android:74a936ae6e3c7eedc5de01",
+        "android_client_info": {
+          "package_name": "com.sanskriti.forms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4u08WmvqXmUUFxqf6Vc-okGEtYgFnX-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
