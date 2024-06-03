@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_attendance_system/screens/login_student.dart';
 import 'package:smart_attendance_system/screens/login_teacher.dart';
 import 'package:smart_attendance_system/screens/login_teacher.dart';
 import 'dart:developer';
@@ -7,24 +8,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-
-class ForgotStudentScreen extends StatefulWidget{
+class ForgotStudentScreen extends StatefulWidget {
   const ForgotStudentScreen({super.key});
   @override
-  ForgotStudentScreenState createState()=>ForgotStudentScreenState();
-
+  ForgotStudentScreenState createState() => ForgotStudentScreenState();
 }
 
-class ForgotStudentScreenState extends State<ForgotStudentScreen>{
+class ForgotStudentScreenState extends State<ForgotStudentScreen> {
   FocusNode myfocus = FocusNode();
   final formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   final emailFocusNode = FocusNode();
-  TextEditingController passwordController=TextEditingController();
-  final passwordFocusNode=FocusNode();
-  TextEditingController repasswordController=TextEditingController();
-  final repasswordFocusNode=FocusNode();
-
 
   String extractUsernameFromEmail(String email) {
     List<String> parts = email.split('@');
@@ -34,52 +28,32 @@ class ForgotStudentScreenState extends State<ForgotStudentScreen>{
       throw FormatException('Invalid email format');
     }
   }
-  void forgot() async{
-    String email=emailController.text.trim();
-    String passwd=passwordController.text.trim();
-    String repasswd=repasswordController.text.trim();
-    String username = extractUsernameFromEmail(email);
-    print('Username: $username');
 
-    if(email=="" || passwd=="" || repasswd==""){
+  void forgot() async {
+    String email = emailController.text.trim();
+
+    String username = extractUsernameFromEmail(email);
+
+    if (email == "") {
       Fluttertoast.showToast(
           msg: 'Please fill all the fields',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Color(0xFFF3E5F5),
-          textColor: Colors.black
-      );
-    }else if(passwd!=repasswd){
-      Fluttertoast.showToast(
-          msg: 'Password does not match',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Color(0xFFF3E5F5),
-          textColor: Colors.black
-      );
-      }
-
-    else{
-      try{
+          textColor: Colors.black);
+    } else {
+      try {
         await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-        Map<String, dynamic> newUserData = {
-          "password": "$passwd"
-        };
+
         Fluttertoast.showToast(
-            msg: 'Password reset',
+            msg: 'Password reset email is sent',
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             backgroundColor: Color(0xFFF3E5F5),
-            textColor: Colors.black
-        );
-        FirebaseDatabase database = FirebaseDatabase.instance;
-        DatabaseReference ref = database.ref("students/$username ipec");
-        await ref.update({
-          "Password": passwd,
-        });
-        await FirebaseFirestore.instance.collection("students").doc(
-            "$username ipec").update(newUserData).then((value)=>Navigator.of(context).pop());
-      }on FirebaseAuthException catch(ex){
+            textColor: Colors.black);
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => LoginStudentScreen()));
+      } on FirebaseAuthException catch (ex) {
         log(ex.code.toString());
       }
     }
@@ -96,11 +70,10 @@ class ForgotStudentScreenState extends State<ForgotStudentScreen>{
   void dispose() {
     super.dispose();
     emailController.dispose();
-
   }
 
   @override
-  Widget build (BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -112,14 +85,17 @@ class ForgotStudentScreenState extends State<ForgotStudentScreen>{
                 padding: EdgeInsets.only(top: 80),
                 child: Column(
                   children: [
-                    Text('Password Reset',style:TextStyle(fontSize:40,color: Color(0xFF651FFF),fontWeight: FontWeight.bold)),
+                    Text('Password Reset',
+                        style: TextStyle(
+                            fontSize: 40,
+                            color: Color(0xFF651FFF),
+                            fontWeight: FontWeight.bold)),
                     SizedBox(
                       height: 30,
                     ),
                     ConstrainedBox(
-                      constraints: BoxConstraints.tight(const Size(365,50)),
+                      constraints: BoxConstraints.tight(const Size(365, 50)),
                       child: TextFormField(
-
                         focusNode: emailFocusNode,
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
@@ -136,115 +112,39 @@ class ForgotStudentScreenState extends State<ForgotStudentScreen>{
                         },
                       ),
                     ),
-
-
                     SizedBox(
                       height: 20,
                     ),
-
-                    ConstrainedBox(
-                      constraints: BoxConstraints.tight(const Size(365,50)),
-                      child: TextFormField(
-                        obscureText: isObscured,
-                        focusNode: passwordFocusNode,
-                        keyboardType: TextInputType.visiblePassword,
-                        controller: passwordController,
-                        decoration: InputDecoration(
-
-                          hintText: 'Enter your new password',
-                          icon: Icon(Icons.lock),
-                          suffixIcon: IconButton(
-
-                            padding: EdgeInsetsDirectional.only(end: 12.0),
-                            icon: isObscured
-                                ? Icon(Icons.visibility)
-                                : Icon(Icons.visibility_off),
-                            onPressed: () {
-                              setState(() {
-                                isObscured = !isObscured;
-                              });
-                            },
-                          ),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            passwordFocusNode.requestFocus();
-                            return 'Please enter some text';
-                          }
-                          if (value.length < 6) {
-                            passwordFocusNode.requestFocus();
-                            return 'Password must be atleast 6 characters';
-                          }
-                        },
-                      ),
+                    Container(
+                      child: Text('You will get a password reset email'),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-
-
-                    ConstrainedBox(
-                      constraints: BoxConstraints.tight(const Size(365,50)),
-                      child: TextFormField(
-                        obscureText: isObscured,
-                        focusNode: repasswordFocusNode,
-                        keyboardType: TextInputType.visiblePassword,
-                        controller: repasswordController,
-                        decoration: InputDecoration(
-
-                          hintText: 'Confirm your password',
-                          icon: Icon(Icons.lock),
-                          suffixIcon: IconButton(
-
-                            padding: EdgeInsetsDirectional.only(end: 12.0),
-                            icon: isObscured
-                                ? Icon(Icons.visibility)
-                                : Icon(Icons.visibility_off),
-                            onPressed: () {
-                              setState(() {
-                                isObscured = !isObscured;
-                              });
-                            },
-                          ),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            repasswordFocusNode.requestFocus();
-                            return 'Please enter some text';
-                          }
-                          if (value.length < 6) {
-                            repasswordFocusNode.requestFocus();
-                            return 'Password must be atleast 6 characters';
-                          }
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-
-
                     Padding(
-                      padding: const EdgeInsets.only(left:20.0),
+                      padding: const EdgeInsets.only(left: 20.0),
                       child: TextButton(
                         style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(Size(330,50)),
-                          backgroundColor: MaterialStatePropertyAll<Color>(Color(0xFF651FFF),),),
-                        onPressed: (){
+                          fixedSize: MaterialStateProperty.all(Size(330, 50)),
+                          backgroundColor: MaterialStatePropertyAll<Color>(
+                            Color(0xFF651FFF),
+                          ),
+                        ),
+                        onPressed: () {
                           forgot();
-
-
-                        }, child: Text('Submit',style:TextStyle(color:Colors.white,fontSize: 17,fontWeight: FontWeight.bold)),),
+                        },
+                        child: Text('Submit',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold)),
+                      ),
                     ),
-
                   ],
                 )),
           ),
         ),
       ),
-
-
     );
   }
 }
-
