@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -45,18 +42,18 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyBiGJ3obw73RHx4RYJZelH3RN4C7VNCQcQ',
-    appId: '1:259574256916:web:7f753548c1f602dbc5de01',
+    appId: '1:259574256916:web:a0045ef4f8dc0863c5de01',
     messagingSenderId: '259574256916',
     projectId: 'attendance-system-a10eb',
     authDomain: 'attendance-system-a10eb.firebaseapp.com',
     databaseURL: 'https://attendance-system-a10eb-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'attendance-system-a10eb.appspot.com',
-    measurementId: 'G-HS6Q08MG52',
+    measurementId: 'G-QH8EHJ95HY',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyD4u08WmvqXmUUFxqf6Vc-okGEtYgFnX-A',
-    appId: '1:259574256916:android:9b3a920901529ff7c5de01',
+    appId: '1:259574256916:android:eb9d593761ce0f31c5de01',
     messagingSenderId: '259574256916',
     projectId: 'attendance-system-a10eb',
     databaseURL: 'https://attendance-system-a10eb-default-rtdb.asia-southeast1.firebasedatabase.app',
@@ -75,11 +72,23 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyB2zzNXoYL4fheSf96UZCkpnE-y4nTmwQQ',
-    appId: '1:259574256916:ios:b48cefd04bd39af0c5de01',
+    appId: '1:259574256916:ios:f5f23357e81e9681c5de01',
     messagingSenderId: '259574256916',
     projectId: 'attendance-system-a10eb',
     databaseURL: 'https://attendance-system-a10eb-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'attendance-system-a10eb.appspot.com',
-    iosBundleId: 'com.example.smartAttendanceSystem.RunnerTests',
+    iosBundleId: 'com.example.smartattendance',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyBiGJ3obw73RHx4RYJZelH3RN4C7VNCQcQ',
+    appId: '1:259574256916:web:684cb76239eb9b2bc5de01',
+    messagingSenderId: '259574256916',
+    projectId: 'attendance-system-a10eb',
+    authDomain: 'attendance-system-a10eb.firebaseapp.com',
+    databaseURL: 'https://attendance-system-a10eb-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'attendance-system-a10eb.appspot.com',
+    measurementId: 'G-BNMQYK6H5F',
+  );
+
 }

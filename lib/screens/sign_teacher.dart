@@ -56,7 +56,7 @@ class SignTeacherScreenState extends State<SignTeacherScreen> {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
-        Map<String, dynamic> newUserData = {"password": "$password"};
+        Map<String, dynamic> newUserData = {"Password": password};
         FirebaseDatabase database = FirebaseDatabase.instance;
         DatabaseReference ref = database.ref("teachers/$username ipec");
         await ref.update({
