@@ -9,6 +9,7 @@ The Smart Attendance App is built with Flutter and  Amazon Rekognition  to revol
 - Fetching Attendance Report for individual student (from student pannel)
 
   Here are few screenshots of app
+  
   <img src="https://github.com/sam6coder/smartattendance/assets/91368583/3cb4ac04-1793-421d-98e5-e468f1655fd2" width="250">
   <img src="https://github.com/sam6coder/smartattendance/assets/91368583/9de40831-3e0b-444e-81a0-f2eb6efc9b7d" width="250">
   <img src="https://github.com/sam6coder/smartattendance/assets/91368583/1876913e-4a58-4215-87fa-3c301476cb19" width="250">
