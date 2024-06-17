@@ -10,11 +10,13 @@ The Smart Attendance App is built with Flutter and  Amazon Rekognition  to revol
 
   Here are few screenshots of app
   <img src="https://github.com/sam6coder/smartattendance/assets/91368583/3cb4ac04-1793-421d-98e5-e468f1655fd2" width="250">
-
-![WhatsApp Image 2024-06-17 at 13 03 06_0a40e12d](https://github.com/sam6coder/smartattendance/assets/91368583/3cb4ac04-1793-421d-98e5-e468f1655fd2)
-![WhatsApp Image 2024-06-17 at 13 03 06_90b4dbca](https://github.com/sam6coder/smartattendance/assets/91368583/852c34dd-8863-4c0d-88f8-41394fe6c65b)
-![WhatsApp Image 2024-06-17 at 13 03 06_50d70d3e](https://github.com/sam6coder/smartattendance/assets/91368583/9a652174-d467-40a4-bf57-5b8fce75064f)
-![WhatsApp Image 2024-06-17 at 13 03 08_ba370971](https://github.com/sam6coder/smartattendance/assets/91368583/12a7a03b-33e8-4ddb-8289-c5b0f7a0710d)
-
-![WhatsApp Image 2024-06-17 at 13 03 07_63eff65e](https://github.com/sam6coder/smartattendance/assets/91368583/6ea13a70-40c5-4a52-b56f-7fd5355b32c8)
-![WhatsApp Image 2024-06-17 at 13 03 08_c8607254](https://github.com/sam6coder/smartattendance/assets/91368583/b2f815ba-8f43-4e18-affa-47f1d5b85c81)
+  <img src="https://github.com/sam6coder/smartattendance/assets/91368583/9de40831-3e0b-444e-81a0-f2eb6efc9b7d" width="250">
+  <img src="https://github.com/sam6coder/smartattendance/assets/91368583/1876913e-4a58-4215-87fa-3c301476cb19" width="250">
+  <img src="https://github.com/sam6coder/smartattendance/assets/91368583/797b5fc0-545b-4c66-ab24-6b8556f8b853" width="250">
+  <img src="https://github.com/sam6coder/smartattendance/assets/91368583/4945b99d-934c-4a30-a4cb-898efb502261" width="250">
+  <img src="https://github.com/sam6coder/smartattendance/assets/91368583/81444c5a-217b-4a15-b1c9-8358dc3e4267" width="250">
+  <img src="https://github.com/sam6coder/smartattendance/assets/91368583/b34f76a2-7724-41a2-a430-8ac9d1ab4543" width="250">
+  <img src="https://github.com/sam6coder/smartattendance/assets/91368583/78617903-76f2-43ef-ac76-d44514f5c196" width="250">
+  <img src="https://github.com/sam6coder/smartattendance/assets/91368583/d5ad3955-cd79-4fd1-be0b-b4676957595b" width="250">
+  <img src="https://github.com/sam6coder/smartattendance/assets/91368583/7a610cf5-36fa-40d6-9822-e40440e1da4b" width="250">
+  <img src="https://github.com/sam6coder/smartattendance/assets/91368583/4f5d8199-3f4d-4d04-82cb-646e8c9e2a8f" width="250">
